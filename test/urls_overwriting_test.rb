@@ -23,4 +23,9 @@ class UrlsOverwritingTest < ActionController::TestCase
       assert_generates("/", :controller => "main", :action => "index", :locale => :de)
     end
   end
+
+#  test "routing" do
+#    assert_equal '/', TestApp::Application.routes.url_for
+#  end
+
 end
