@@ -7,7 +7,7 @@ gem "i18n"
 group :development, :test do
   gem "test-unit"
   gem "test-spec"
-  gem "shoulda"
+  gem "shoulda" 
   gem "yard", "~> 0.6.0"
   gem "jeweler", "~> 1.6.4"
 
