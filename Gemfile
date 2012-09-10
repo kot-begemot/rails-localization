@@ -1,13 +1,28 @@
 source "http://rubygems.org"
-# Add dependencies required to use your gem here.
-# Example:
-#   gem "activesupport", ">= 2.3.5"
 
-# Add dependencies to develop your gem here.
-# Include everything needed to run rake, tests, features, etc.
-group :development do
-  gem "shoulda", ">= 0"
+gem "rails"
+gem "localization-middleware"
+gem "i18n"
+
+group :development, :test do
   gem "bundler", "~> 1.0.0"
+end
+
+group :development do
+  gem "yard", "~> 0.6.0"
   gem "jeweler", "~> 1.6.4"
-  gem "rcov", ">= 0"
+
+  gem "simplecov", "~> 0.6.4", :platform => :ruby_19
+  gem "rcov", "~> 1.0.0", :platform => :ruby_18
+end
+
+group :test do
+  gem 'minitest'
+  gem "test-spec"
+  gem "shoulda"
+  gem 'turn'
+  gem "capybara"
+  
+  gem "debugger", "~> 1.1.3", :platform => :ruby_19
+  gem 'ruby-debug', :platform => :ruby_18
 end
