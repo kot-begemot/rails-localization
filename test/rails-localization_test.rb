@@ -77,4 +77,40 @@ class RailsLocalizationTest < ActionDispatch::IntegrationTest
       assert page.has_content? "translation missing: ru.users.index"
     end
   end
+
+  context "user path" do
+    def test_locale_included_into_users_path
+      visit "/users/with_locale"
+      assert_equal "/users", page.source, "Page body was: #{page.body}"
+
+      visit "/en/users/with_locale"
+      assert_equal "/users", page.source, "Page body was: #{page.body}"
+
+      visit "/ru/users/with_locale"
+      assert_equal "/ru/users", page.source, "Page body was: #{page.body}"
+    end
+
+    def test_locale_ignored_in_users_path
+      visit "/users/without_locale"
+      assert_equal "/users", page.source, "Page body was: #{page.body}"
+
+      visit "/en/users/without_locale"
+      assert_equal "/users", page.source, "Page body was: #{page.body}"
+
+      visit "/ru/users/without_locale"
+      assert_equal "/users", page.source, "Page body was: #{page.body}"
+    end
+
+    def test_locale_forced_in_users_path
+      visit "/users/with_defined_locale"
+      assert_equal "/ru/users", page.source, "Page body was: #{page.body}"
+
+      visit "/en/users/with_defined_locale"
+      assert_equal "/ru/users", page.source, "Page body was: #{page.body}"
+
+      visit "/ru/users/with_defined_locale"
+      assert_equal "/ru/users", page.source, "Page body was: #{page.body}"
+    end
+
+  end
 end
