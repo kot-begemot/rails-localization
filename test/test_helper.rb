@@ -1,7 +1,7 @@
 require 'bundler'
 require 'rack/test'
 require 'test/unit'
-require 'debugger'
+require 'ruby-debug'
 
 Bundler.setup(:default, :test)
 
