@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
     "lib/rails-localization/middleware.rb",
     "lib/rails-localization/routes_ext.rb",
     "lib/rails_localization.rb",
+    "rails-localization.gemspec",
     "test/rails-localization_test.rb",
     "test/support/capybara_helper.rb",
     "test/test_app/.gitignore",
@@ -82,30 +83,45 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<rails>, [">= 0"])
       s.add_runtime_dependency(%q<localization-middleware>, [">= 0"])
       s.add_runtime_dependency(%q<i18n>, [">= 0"])
-      s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
+      s.add_development_dependency(%q<test-unit>, [">= 0"])
+      s.add_development_dependency(%q<test-spec>, [">= 0"])
+      s.add_development_dependency(%q<shoulda>, [">= 0"])
       s.add_development_dependency(%q<yard>, ["~> 0.6.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.6.4"])
       s.add_development_dependency(%q<simplecov>, ["~> 0.6.4"])
       s.add_development_dependency(%q<rcov>, ["~> 1.0.0"])
+      s.add_development_dependency(%q<debugger>, ["~> 1.1.3"])
+      s.add_development_dependency(%q<ruby-debug>, [">= 0"])
+      s.add_development_dependency(%q<capybara>, [">= 0"])
     else
       s.add_dependency(%q<rails>, [">= 0"])
       s.add_dependency(%q<localization-middleware>, [">= 0"])
       s.add_dependency(%q<i18n>, [">= 0"])
-      s.add_dependency(%q<bundler>, ["~> 1.0.0"])
+      s.add_dependency(%q<test-unit>, [">= 0"])
+      s.add_dependency(%q<test-spec>, [">= 0"])
+      s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<yard>, ["~> 0.6.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
       s.add_dependency(%q<simplecov>, ["~> 0.6.4"])
       s.add_dependency(%q<rcov>, ["~> 1.0.0"])
+      s.add_dependency(%q<debugger>, ["~> 1.1.3"])
+      s.add_dependency(%q<ruby-debug>, [">= 0"])
+      s.add_dependency(%q<capybara>, [">= 0"])
     end
   else
     s.add_dependency(%q<rails>, [">= 0"])
     s.add_dependency(%q<localization-middleware>, [">= 0"])
     s.add_dependency(%q<i18n>, [">= 0"])
-    s.add_dependency(%q<bundler>, ["~> 1.0.0"])
+    s.add_dependency(%q<test-unit>, [">= 0"])
+    s.add_dependency(%q<test-spec>, [">= 0"])
+    s.add_dependency(%q<shoulda>, [">= 0"])
     s.add_dependency(%q<yard>, ["~> 0.6.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
     s.add_dependency(%q<simplecov>, ["~> 0.6.4"])
     s.add_dependency(%q<rcov>, ["~> 1.0.0"])
+    s.add_dependency(%q<debugger>, ["~> 1.1.3"])
+    s.add_dependency(%q<ruby-debug>, [">= 0"])
+    s.add_dependency(%q<capybara>, [">= 0"])
   end
 end
 
