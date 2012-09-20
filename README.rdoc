@@ -1,6 +1,35 @@
 = rails-localization
+{<img src="https://secure.travis-ci.org/kot-begemot/rails-localization.png" />}[http://travis-ci.org/kot-begemot/rails-localization]
 
-Description goes here.
+The gem that allows to localize your Rails app through the Rack middleware in a very easy way.
+
+== Usage
+
+* First install the gem
+
+  With Bundle
+
+    #Gemfile
+    gem "rails-localization"
+
+    #console
+    bundle install
+
+  or with Gems
+
+    gem install rails-localization
+
+* Now it should be added to middleware
+
+    # config/application.rb
+    config.middleware.use "Rails::Localization::Middleware", %w(en ru)
+
+* And that's it. All existing urls now will be automatically localized, so there is no need to change anything,
+  it just requires the translation for your I18n. If you want to define a locale for specific url, you can do it like that:
+
+   users_path(:locale => 'de')
+
+  You can also predefine the default locale like I18n.default_locale = "de" in the initializers
 
 == Contributing to rails-localization
  
