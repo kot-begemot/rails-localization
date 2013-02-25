@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "rails-localization"
-  s.version = "0.1.1"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["E-Max"]
-  s.date = "2012-09-10"
+  s.date = "2013-02-25"
   s.description = "This gem allows you to localize your rails application with ease"
   s.email = "max@studentify.nl"
   s.extra_rdoc_files = [
@@ -28,7 +28,7 @@ Gem::Specification.new do |s|
     "VERSION",
     "lib/rails-localization.rb",
     "lib/rails-localization/middleware.rb",
-    "lib/rails-localization/routes_ext.rb",
+    "lib/rails-localization/routes_set_ext.rb",
     "lib/rails_localization.rb",
     "rails-localization.gemspec",
     "test/rails-localization_test.rb",
@@ -39,9 +39,9 @@ Gem::Specification.new do |s|
     "test/test_app/app/assets/stylesheets/application.css",
     "test/test_app/app/controllers/application_controller.rb",
     "test/test_app/app/controllers/main_controller.rb",
+    "test/test_app/app/controllers/sub_app/main_controller.rb",
     "test/test_app/app/controllers/users_controller.rb",
     "test/test_app/app/helpers/application_helper.rb",
-    "test/test_app/app/mailers/.gitkeep",
     "test/test_app/app/models/.gitkeep",
     "test/test_app/app/views/layouts/application.html.erb",
     "test/test_app/config.ru",
@@ -60,6 +60,7 @@ Gem::Specification.new do |s|
     "test/test_app/config/locales/en.yml",
     "test/test_app/config/routes.rb",
     "test/test_app/lib/assets/.gitkeep",
+    "test/test_app/lib/sub_app.rb",
     "test/test_app/lib/tasks/.gitkeep",
     "test/test_app/log/.gitkeep",
     "test/test_app/public/404.html",
