@@ -8,6 +8,75 @@ class RailsLocalizationTest < ActionDispatch::IntegrationTest
     after_teardown
   end
   
+  context "sub app" do
+    should "access without locale" do
+      visit "/sub"
+
+      assert_equal 200, page.status_code
+      assert page.has_content? "translation missing: en.sub_app.main.index"
+    end
+
+    should "access with english locale" do
+      visit "/en/sub"
+      assert_equal 200, page.status_code
+      assert page.has_content? "translation missing: en.sub_app.main.index"
+
+      visit "/en/sub/"
+      assert_equal 200, page.status_code
+      assert page.has_content? "translation missing: en.sub_app.main.index"
+    end
+
+    should "access with russian locale" do
+      visit "/ru/sub"
+      assert_equal 200, page.status_code
+      assert page.has_content? "translation missing: ru.sub_app.main.index"
+
+      visit "/ru/sub/"
+      assert_equal 200, page.status_code
+      assert page.has_content? "translation missing: ru.sub_app.main.index"
+    end
+
+    context "url_for" do
+      should "correctly print path" do
+        visit "/sub/print_redirect"
+
+        assert_equal 200, page.status_code
+        assert page.has_content?("/sub/print_redirect"), "Failed: #{page.source}"
+      end
+
+      should "correctly print path with english locale" do
+        visit "en/sub/print_redirect"
+
+        assert_equal 200, page.status_code
+        assert page.has_content?("/sub/print_redirect"), "Failed: #{page.source}"
+      end
+
+      should "correctly print path with russian locale" do
+        visit "/ru/sub/print_redirect"
+
+        assert_equal 200, page.status_code
+        assert page.has_content?("/ru/sub/print_redirect"), "Failed: #{page.source}"
+      end
+
+      should "return path with russian locale" do
+        visit "/sub/welcome"
+
+        assert_equal 200, page.status_code
+        assert page.has_content?("/ru/sub/print_redirect"), "Failed: #{page.source}"
+
+        visit "/en/sub/welcome"
+
+        assert_equal 200, page.status_code
+        assert page.has_content?("/ru/sub/print_redirect"), "Failed: #{page.source}"
+
+        visit "/ru/sub/welcome"
+
+        assert_equal 200, page.status_code
+        assert page.has_content?("/ru/sub/print_redirect"), "Failed: #{page.source}"
+      end
+    end
+  end
+
   context "root page" do
     should "access without locale" do
       visit "/"

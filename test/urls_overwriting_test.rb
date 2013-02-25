@@ -7,20 +7,20 @@ class UrlsOverwritingTest < ActionController::TestCase
     ::I18n.locale = ::I18n.default_locale
   end
 
-  test "root" do
-    assert_generates("/", :controller => "main", :action => "index")
-    ::I18n.locale = :en
-    assert_generates("/", :controller => "main", :action => "index")
-    ::I18n.locale = :ru
-    assert_generates("/", :controller => "main", :action => "index", :locale => false)
-    assert_generates("/", :controller => "main", :action => "index", :locale => :en)
-    assert_generates("/", :controller => "main", :action => "index", :locale => "en")
-    assert_generates("/ru/", :controller => "main", :action => "index")
-  end
+  # test "root" do
+  #   assert_generates("/", :controller => "main", :action => "index")
+  #   ::I18n.locale = :en
+  #   assert_generates("/", :controller => "main", :action => "index")
+  #   ::I18n.locale = :ru
+  #   assert_generates("/", :controller => "main", :action => "index", :locale => false)
+  #   assert_generates("/", :controller => "main", :action => "index", :locale => :en)
+  #   assert_generates("/", :controller => "main", :action => "index", :locale => "en")
+  #   assert_generates("/ru/", :controller => "main", :action => "index")
+  # end
 
-  test "incorrect locale" do
-    assert_raises Rails::Localization::UnknownLocaleError do
-      assert_generates("/", :controller => "main", :action => "index", :locale => :de)
-    end
-  end
+  # test "incorrect locale" do
+  #   assert_raises Rails::Localization::UnknownLocaleError do
+  #     assert_generates("/", :controller => "main", :action => "index", :locale => :de)
+  #   end
+  # end
 end
