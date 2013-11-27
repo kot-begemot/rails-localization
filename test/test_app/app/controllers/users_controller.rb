@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def without_locale
-    render :text => users_path(:locale => false), :layout => false
+    render :text => users_path, :layout => false
   end
 
   def with_defined_locale

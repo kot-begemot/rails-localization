@@ -1,13 +1,10 @@
 # encoding: utf-8
 require File.expand_path("test_helper", File.dirname(__FILE__))
+require File.expand_path("support/capybara_helper", File.dirname(__FILE__))
 
 class RailsLocalizationTest < ActionDispatch::IntegrationTest
   include CapybaraHelper
 
-  def teardown
-    after_teardown
-  end
-  
   context "sub app" do
     should "access without locale" do
       visit "/sub"
@@ -45,10 +42,10 @@ class RailsLocalizationTest < ActionDispatch::IntegrationTest
       end
 
       should "correctly print path with english locale" do
-        visit "en/sub/print_redirect"
+        visit "/en/sub/print_redirect"
 
         assert_equal 200, page.status_code
-        assert page.has_content?("/sub/print_redirect"), "Failed: #{page.source}"
+        assert page.has_content?("/en/sub/print_redirect"), "Failed: #{page.source}"
       end
 
       should "correctly print path with russian locale" do
@@ -148,38 +145,41 @@ class RailsLocalizationTest < ActionDispatch::IntegrationTest
   end
 
   context "user path" do
-    def test_locale_included_into_users_path
+    should "include locale into users_path" do
       visit "/users/with_locale"
-      assert_equal "/users", page.source, "Page body was: #{page.body}"
+      assert_equal "/users", page.source, "1. Page body was: #{page.body}"
 
       visit "/en/users/with_locale"
-      assert_equal "/users", page.source, "Page body was: #{page.body}"
+      assert_equal "/en/users", page.source, "2. Page body was: #{page.body}"
 
       visit "/ru/users/with_locale"
-      assert_equal "/ru/users", page.source, "Page body was: #{page.body}"
+      assert_equal "/ru/users", page.source, "3. Page body was: #{page.body}"
     end
 
-    def test_locale_ignored_in_users_path
+    should "ignore locale in users_path" do
       visit "/users/without_locale"
-      assert_equal "/users", page.source, "Page body was: #{page.body}"
+      assert_equal "/users", page.source, "1. Page body was: #{page.body}"
 
-      visit "/en/users/without_locale"
-      assert_equal "/users", page.source, "Page body was: #{page.body}"
+      assert_raise ActionController::RoutingError do
+        visit "/en/users/without_locale"
+      end
 
-      visit "/ru/users/without_locale"
-      assert_equal "/users", page.source, "Page body was: #{page.body}"
+      assert_raise ActionController::RoutingError do
+        visit "/ru/users/without_locale"
+      end
     end
 
-    def test_locale_forced_in_users_path
+    should "forced locale in users_path" do
       visit "/users/with_defined_locale"
-      assert_equal "/ru/users", page.source, "Page body was: #{page.body}"
+      assert_equal "/ru/users", page.source, "1. Page body was: #{page.body}"
 
-      visit "/en/users/with_defined_locale"
-      assert_equal "/ru/users", page.source, "Page body was: #{page.body}"
+      assert_raise ActionController::RoutingError do
+        visit "/en/users/with_defined_locale"
+      end
 
-      visit "/ru/users/with_defined_locale"
-      assert_equal "/ru/users", page.source, "Page body was: #{page.body}"
+      assert_raise ActionController::RoutingError do
+        visit "/ru/users/with_defined_locale"
+      end
     end
-
   end
 end

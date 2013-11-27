@@ -1,21 +1,25 @@
 source "http://rubygems.org"
 
-gem "rails"
-gem "localization-middleware"
+gem "rails", ">= 3.0.0", "< 4.0.0"
 gem "i18n"
 
-group :development, :test do
-  gem "test-unit"
-  gem "test-spec"
-  gem "shoulda" 
-  gem "yard", "~> 0.6.0"
-  gem "jeweler", "~> 1.6.4"
+group :debug do
+  gem "debugger", "~> 1.2.2", :platform => :ruby_19
+  gem "ruby-debug", :platform => :ruby_18
+end
 
-  gem "simplecov", "~> 0.6.4", :platform => :ruby_19
-  gem "rcov", "~> 1.0.0", :platform => :ruby_18
-  
-  gem "debugger", "~> 1.1.3", :platform => :ruby_19
-  gem 'ruby-debug', :platform => :ruby_18
+group :development do
+  gem "jeweler", "~> 1.8.0"
+end
+
+group :debug, :test do
+  gem "yard"  
+  gem "redcarpet"
+end
+
+group :test do
+  gem "test-unit"
+  gem "shoulda" 
 
   gem "capybara"
 end
