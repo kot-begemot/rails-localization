@@ -18,6 +18,7 @@ group :debug, :test do
 end
 
 group :test do
+  gem 'minitest', "= 4.6.1"
   gem "test-unit"
   gem "shoulda" 
 

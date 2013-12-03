@@ -5,7 +5,12 @@ module RailsLocalization
         around_filter :process_with_locale
 
         def url_options_with_locale
-          url_options_without_locale.merge(@locale_url_options || { locale: nil})
+          opts = url_options_without_locale
+          if opts.has_key?(:_path_segments)
+            opts[:_path_segments].merge(@locale_url_options || { locale: nil})
+          else
+            opts.merge(@locale_url_options || { locale: nil})
+          end
         end
         alias_method_chain :url_options, :locale
 
