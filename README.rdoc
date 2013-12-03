@@ -37,7 +37,7 @@ The gem that allows to localize your Rails app through the Rack middleware in a 
       get "users/with_defined_locale", :to => "users#with_defined_locale", locale: "en"
     end
 
-And that whould generate you something like that
+  And that whould generate you something like that
 
     $ rake routes
                sub_app_engine     (/:locale)/sub                         SubApp::Engine {:locale=>/en|ru/}
@@ -53,21 +53,21 @@ And that whould generate you something like that
            welcome GET /welcome(.:format)        sub_app/main#welcome
               root     /                         sub_app/main#index
 
-Inside your application you can use it like that
+* Inside your application you can use it like that
 
     TestApp::Application.routes.url_helpers.users_path # => /users
     TestApp::Application.routes.url_helpers.users_path(:locale => "ru") # => /ru/users
 
-And that should also take into account the fact that you switched `I18n.locale`
+  And that should also take into account the fact that you switched `I18n.locale`
 
     I18n.locale = :ru
     TestApp::Application.routes.url_helpers.users_path # => /ru/users
 
-So, the logic is **when ever current locale doesn't match default one, it is added url**
+  So, the logic is **when ever current locale doesn't match default one, it is added url**
 
 * Engines
 
-So, you can also localize an application, that will be mounted later on onto another one.
+  So, you can also localize an application, that will be mounted later on onto another one.
 
     SubApp::Engine.routes.draw do
       localized({"en" => "English", "ru" => "Russian"}) do
@@ -79,7 +79,7 @@ So, you can also localize an application, that will be mounted later on onto ano
 
 * Accessing locales
 
-An easy thing
+  An easy thing
 
     I18n.locales[:main_app] # => {"en" => "English", "ru" => "Russian"}
     I18n.locales[:sub_app] # => {"en" => "English", "ru" => "Russian"}
