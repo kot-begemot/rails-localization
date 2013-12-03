@@ -4,9 +4,10 @@ module RailsLocalization
       base.class_eval do
         around_filter :process_with_locale
 
-        def url_options
-          @locale_url_options || { locale: nil}
+        def url_options_with_locale
+          url_options_without_locale.merge(@locale_url_options || { locale: nil})
         end
+        alias_method_chain :url_options, :locale
 
         protected
 
