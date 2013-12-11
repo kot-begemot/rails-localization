@@ -150,7 +150,7 @@ class RailsLocalizationTest < ActionDispatch::IntegrationTest
       assert_equal "/users", page.source, "1. Page body was: #{page.body}"
 
       visit "/en/users/with_locale"
-      assert_equal "/en/users", page.source, "2. Page body was: #{page.body}"
+      assert_equal "/users", page.source, "2. Page body was: #{page.body}"
 
       visit "/ru/users/with_locale"
       assert_equal "/ru/users", page.source, "3. Page body was: #{page.body}"

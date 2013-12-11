@@ -11,7 +11,7 @@ class UrlsOverwritingTest < ActionController::TestCase
     assert_generates("/", :controller => "main", :action => "index")
     ::I18n.locale = :en
     assert_generates("/", :controller => "main", :action => "index")
-    assert_generates("/en", :controller => "main", :action => "index", :locale => "en")
+    assert_generates("/", :controller => "main", :action => "index", :locale => "en")
     ::I18n.locale = :ru
     assert_generates("/ru", :controller => "main", :action => "index", :locale => "ru")
   end

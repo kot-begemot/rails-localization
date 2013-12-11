@@ -10,12 +10,10 @@ module RailsLocalization
           begin
             if params.has_key?(:locale)
               ::I18n.locale = params[:locale].to_sym
-              @locale_url_options = { locale: ::I18n.locale }
             end
             yield
           ensure 
             ::I18n.locale = ::I18n.default_locale
-            @locale_url_options = {}
           end 
         end    
       end
