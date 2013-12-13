@@ -22,7 +22,7 @@ module RailsLocalization
     def self.affect_script_name opts, locale
       opts[:_path_segments].delete(:locale)
       app_locales = ::I18n.locales[:main_app]
-      if opts[:script_name] =~ /^\/(#{::I18n.locales[:main_app].codes.join('|')})/
+      if opts[:script_name] =~ /^\/(#{::I18n.locales[:main_app].keys.join('|')})/
         opts[:script_name].gsub!($1, locale)
       else
         opts[:script_name] = "/#{locale}#{opts[:script_name]}"

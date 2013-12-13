@@ -28,7 +28,7 @@ class MapperIntegrationTest < Test::Unit::TestCase
       localized({"en" => "English"}) do; end
     end
 
-    assert_kind_of(RailsLocalization::Language, I18n.locales[:main_app])
+    assert_kind_of(Hash, I18n.locales[:main_app])
   end
 
   # should "recognize path" do
