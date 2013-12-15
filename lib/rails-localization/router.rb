@@ -8,7 +8,7 @@ module ActionDispatch::Routing::Mapper::Localization
           sub_app_name = @scope[:module] || :main_app
           I18n.locales[sub_app_name] = locales
         end
-        scope("(:locale)", constraints: {locale: /#{locales.keys.join('|')}/}, defaults: {locale: locales.keys.first.dup}) { yield }
+        scope("(:locale)", constraints: {locale: /#{locales.keys.join('|')}/}, defaults: {locale: ""}) { yield }
       end
     end
   end

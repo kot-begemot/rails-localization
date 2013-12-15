@@ -9,7 +9,7 @@ module RailsLocalization
         def process_with_locale
           begin
             if params.has_key?(:locale)
-              ::I18n.locale = params[:locale].to_sym
+              ::I18n.locale = params[:locale].blank? ? ::I18n.default_locale : params[:locale].to_s
             end
             yield
           ensure 
