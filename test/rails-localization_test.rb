@@ -5,15 +5,15 @@ require File.expand_path("support/capybara_helper", File.dirname(__FILE__))
 class RailsLocalizationTest < ActionDispatch::IntegrationTest
   include CapybaraHelper
 
-  context "sub app" do
-    should "access without locale" do
+  #context "sub app" do
+    test "should access without locale" do
       visit "/sub"
 
       assert_equal 200, page.status_code
       assert page.has_content? "translation missing: en.sub_app.main.index"
     end
 
-    should "access with english locale" do
+    test "should access with english locale" do
       visit "/en/sub"
       assert_equal 200, page.status_code
       assert page.has_content? "translation missing: en.sub_app.main.index"
@@ -23,7 +23,7 @@ class RailsLocalizationTest < ActionDispatch::IntegrationTest
       assert page.has_content? "translation missing: en.sub_app.main.index"
     end
 
-    should "access with russian locale" do
+    test "should access with russian locale" do
       visit "/ru/sub"
       assert_equal 200, page.status_code
       assert page.has_content? "translation missing: ru.sub_app.main.index"
@@ -33,29 +33,29 @@ class RailsLocalizationTest < ActionDispatch::IntegrationTest
       assert page.has_content? "translation missing: ru.sub_app.main.index"
     end
 
-    context "url_for" do
-      should "correctly print path" do
+    #context "url_for" do
+      test "should correctly print path" do
         visit "/sub/print_redirect"
 
         assert_equal 200, page.status_code
         assert page.has_content?("/sub/print_redirect"), "Failed: #{page.source}"
       end
 
-      should "correctly print path with english locale" do
+      test "should correctly print path with english locale" do
         visit "/en/sub/print_redirect"
 
         assert_equal 200, page.status_code
         assert page.has_content?("/en/sub/print_redirect"), "Failed: #{page.source}"
       end
 
-      should "correctly print path with russian locale" do
+      test "should correctly print path with russian locale" do
         visit "/ru/sub/print_redirect"
 
         assert_equal 200, page.status_code
         assert page.has_content?("/ru/sub/print_redirect"), "Failed: #{page.source}"
       end
 
-      should "return path with russian locale" do
+      test "should return path with russian locale" do
         visit "/sub/welcome"
 
         assert_equal 200, page.status_code
@@ -71,18 +71,18 @@ class RailsLocalizationTest < ActionDispatch::IntegrationTest
         assert_equal 200, page.status_code
         assert page.has_content?("/ru/sub/print_redirect"), "Failed: #{page.source}"
       end
-    end
-  end
+    #end
+  #end
 
-  context "root page" do
-    should "access without locale" do
+  #context "root page" do
+    test "root page should access without locale" do
       visit "/"
 
       assert_equal 200, page.status_code
       assert page.has_content? "translation missing: en.main.index"
     end
     
-    should "access with english locale" do
+    test "root page should access with english locale" do
       visit "/en"
       assert_equal 200, page.status_code
       assert page.has_content? "translation missing: en.main.index"
@@ -92,7 +92,7 @@ class RailsLocalizationTest < ActionDispatch::IntegrationTest
       assert page.has_content? "translation missing: en.main.index"
     end
 
-    should "access with russian locale" do
+    test "root page should access with russian locale" do
       visit "/ru"
       assert_equal 200, page.status_code
       assert page.has_content? "translation missing: ru.main.index"
@@ -101,9 +101,9 @@ class RailsLocalizationTest < ActionDispatch::IntegrationTest
       assert_equal 200, page.status_code
       assert page.has_content? "translation missing: ru.main.index"
     end
-  end
+  #end
 
-  context "welcome page" do
+  #context "welcome page" do
     def test_welcome_with_locale_1
       visit "/en/welcome"
       assert_equal 200, page.status_code
@@ -115,9 +115,9 @@ class RailsLocalizationTest < ActionDispatch::IntegrationTest
       assert_equal 200, page.status_code
       assert page.has_content? "translation missing: ru.main.welcome"
     end
-  end
+  #end
   
-  context "404" do
+  #context "404" do
     def test_wrong_page_without_locale
       assert_raise ActionController::RoutingError do
         visit "/test"
@@ -129,9 +129,9 @@ class RailsLocalizationTest < ActionDispatch::IntegrationTest
         visit "en/test"
       end
     end
-  end
+  #end
 
-  context "users page" do
+  #context "users page" do
     def test_user_controller_index
       visit "/en/users"
       assert page.has_content?("translation missing: en.users.index"), "Page body was: #{page.body}"
@@ -142,10 +142,10 @@ class RailsLocalizationTest < ActionDispatch::IntegrationTest
       visit "/ru/users"
       assert page.has_content? "translation missing: ru.users.index"
     end
-  end
+  #end
 
-  context "user path" do
-    should "include locale into users_path" do
+  #context "user path" do
+    test "should include locale into users_path" do
       visit "/users/with_locale"
       assert_equal "/users", page.source, "1. Page body was: #{page.body}"
 
@@ -156,7 +156,7 @@ class RailsLocalizationTest < ActionDispatch::IntegrationTest
       assert_equal "/ru/users", page.source, "3. Page body was: #{page.body}"
     end
 
-    should "ignore locale in users_path" do
+    test "should ignore locale in users_path" do
       visit "/users/without_locale"
       assert_equal "/users", page.source, "1. Page body was: #{page.body}"
 
@@ -169,7 +169,7 @@ class RailsLocalizationTest < ActionDispatch::IntegrationTest
       end
     end
 
-    should "forced locale in users_path" do
+    test "should forced locale in users_path" do
       visit "/users/with_defined_locale"
       assert_equal "/ru/users", page.source, "1. Page body was: #{page.body}"
 
@@ -181,5 +181,5 @@ class RailsLocalizationTest < ActionDispatch::IntegrationTest
         visit "/ru/users/with_defined_locale"
       end
     end
-  end
+  #end
 end

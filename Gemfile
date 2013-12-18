@@ -1,11 +1,12 @@
 source "http://rubygems.org"
 
-gem "rails", ">= 3.0.0", "< 4.0.0"
+gem "rails", ">= 4.0.0"
 gem "i18n"
 
 group :debug do
-  gem "debugger", "~> 1.2.2", :platform => :ruby_19
-  gem "ruby-debug", :platform => :ruby_18
+  gem "byebug", platform: :ruby_20
+  #gem "debugger", "~> 1.2.2", platform: :ruby_19
+  #gem "ruby-debug", platform: :ruby_18
 end
 
 group :development, :test do
@@ -18,9 +19,10 @@ group :debug, :test do
 end
 
 group :test do
-  gem 'minitest', "= 4.6.1"
+  gem 'minitest'
   gem "test-unit"
-  gem "shoulda" 
+  gem 'shoulda-context'
+  gem 'shoulda-matchers'
 
   gem "capybara"
 end
