@@ -1,7 +1,7 @@
 module RailsLocalization
   module UrlOptions
     def self.formatter opts
-      if opts[:_path_segments] && opts[:_path_segments].has_key?(:locale)
+      if opts[:_recall] && opts[:_recall].has_key?(:locale)
         opts[:locale] = ::I18n.locale.to_s if opts[:locale].blank?
 
         if !opts[:script_name].blank?

@@ -13,16 +13,16 @@ class I18nIntegrationTest < Test::Unit::TestCase
     I18n.instance_variable_set(:@locales, @i18n_locales)
   end
 
-  should "Respond to locales" do 
+  test "should Respond to locales" do 
     assert_respond_to I18n, :locales
   end
 
-  should "Return locales" do
+  test "should Return locales" do
     I18n.instance_variable_set(:@locales, {"en" => "English"})
     assert_equal({"en" => "English"}, I18n.locales)
   end
 
-  should "Return empty hash if no locales" do
+  test "should Return empty hash if no locales" do
     assert_equal({}, I18n.locales)
   end
 end

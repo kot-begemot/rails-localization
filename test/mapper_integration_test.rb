@@ -18,12 +18,12 @@ class MapperIntegrationTest < Test::Unit::TestCase
     I18n.instance_variable_set(:@locales, @i18n_locales)
   end
 
-  should "Respond to localized" do
+  test "should Respond to localized" do
     mapper = ActionDispatch::Routing::Mapper.new @route_set
     assert_respond_to mapper, :localized
   end
 
-  should "Define locales for I18n" do
+  test "should Define locales for I18n" do
     @route_set.draw do
       localized({"en" => "English"}) do; end
     end
@@ -31,7 +31,7 @@ class MapperIntegrationTest < Test::Unit::TestCase
     assert_kind_of(Hash, I18n.locales[:main_app])
   end
 
-  # should "recognize path" do
+  # test "should recognize path" do
   #   @route_set.draw do
   #     localized({"en" => "English"}) do
   #       resources :posts
