@@ -9,8 +9,9 @@ Gem::Specification.new do |s|
   s.version = "1.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
+  s.require_paths = ["lib"]
   s.authors = ["E-Max"]
-  s.date = "2013-12-18"
+  s.date = "2014-01-31"
   s.description = "This gem allows you to localize your rails application with ease"
   s.email = "max@studentify.nl"
   s.extra_rdoc_files = [
@@ -84,8 +85,7 @@ Gem::Specification.new do |s|
   ]
   s.homepage = "http://github.com/kot-begemot/rails-localization"
   s.licenses = ["MIT"]
-  s.require_paths = ["lib"]
-  s.rubygems_version = "2.1.11"
+  s.rubygems_version = "2.2.1"
   s.summary = "Rails localization Gem"
 
   if s.respond_to? :specification_version then
