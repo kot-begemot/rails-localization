@@ -7,7 +7,7 @@ SubApp::Engine.routes.draw do
 end
 
 TestApp::Application.routes.draw do
-  localized({"en" => "English", "ru" => "Russian"}) do
+  localized("en", "ru") do
     mount SubApp::Engine => '/sub', :as => :sub_app_engine
 
     get :users, :to => "users#index"

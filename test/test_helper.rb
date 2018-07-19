@@ -1,7 +1,6 @@
 require 'bundler'
 require 'rack/test'
 require 'test-unit'
-require 'shoulda/context'
 require 'byebug'
 
 Bundler.setup(:default, :test)

@@ -10,8 +10,8 @@ ActionDispatch::Routing::Mapper.send :include, ActionDispatch::Routing::Mapper::
 class MapperIntegrationTest < Test::Unit::TestCase
   setup do
     @route_set = ActionDispatch::Routing::RouteSet.new
-    @i18n_locales = I18n.instance_variable_get(:@locales)
-    I18n.instance_variable_set(:@locales, nil)
+    @i18n_locales = I18n.instance_variable_get(:@route_locales)
+    I18n.instance_variable_set(:@route_locales, nil)
   end
 
   teardown do
@@ -25,20 +25,20 @@ class MapperIntegrationTest < Test::Unit::TestCase
 
   test "should Define locales for I18n" do
     @route_set.draw do
-      localized({"en" => "English"}) do; end
+      localized("en") do; end
     end
 
-    assert_kind_of(Hash, I18n.locales[:main_app])
+    assert_kind_of(Hash, I18n.route_locales[:main_app])
   end
 
   # test "should recognize path" do
   #   @route_set.draw do
-  #     localized({"en" => "English"}) do
+  #     localized("en") do
   #       resources :posts
   #       root :to => "welcome#index"
   #     end
   #   end
 
-  #   assert_equal({"en" => "English"}, @route_set.recognize_path("/", {:method => :get}))
+  #   assert_equal("en", @route_set.recognize_path("/", {:method => :get}))
   # end
 end

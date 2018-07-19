@@ -1,9 +1,7 @@
 module RailsLocalization
   module I18n
-    def self.extended(base)
-      def base.locales
-        @locales ||= {}
-      end
+    def route_locales
+      @route_locales ||= {}
     end
   end
 end

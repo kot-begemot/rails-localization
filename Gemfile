@@ -21,8 +21,6 @@ end
 group :test do
   gem 'minitest'
   gem "test-unit"
-  gem 'shoulda-context'
-  gem 'shoulda-matchers'
 
   gem "capybara"
 end

@@ -1,11 +1,12 @@
 module ActionDispatch::Routing::Mapper::Localization
-  def localized(locales)
+  def localized(*locales)
+    symbolized_locales = locales.map(&:to_sym)
     if @set == Rails.application.routes
-      I18n.locales[:main_app] = locales
+      I18n.route_locales[:main_app] = symbolized_locales
     else
       sub_app_name = @scope[:module] || :main_app
-      I18n.locales[sub_app_name] = locales
+      I18n.route_locales[sub_app_name] = symbolized_locales
     end
-    scope("(:locale)", constraints: {locale: /#{locales.keys.join('|')}/}, defaults: {locale: ""}) { yield }
+    scope("(:locale)", constraints: {locale: /#{symbolized_locales.join('|')}/}, defaults: {locale: ""}) { yield }
   end
 end
