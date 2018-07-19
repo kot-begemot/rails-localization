@@ -3,13 +3,6 @@ module RailsLocalization
     def self.formatter opts
       if opts[:_recall] && opts[:_recall].has_key?(:locale)
         opts[:locale] = ::I18n.locale.to_s if opts[:locale].blank? && ::I18n.locale.to_s != ::I18n.default_locale.to_s
-
-        # if !opts[:script_name].blank?
-        #   locale = opts.delete(:locale).to_s
-        #   affect_script_name(opts, locale) unless opts[:locale].to_s == ::I18n.default_locale.to_s
-        # else
-        #   opts[:locale] = nil if opts[:locale].to_s == ::I18n.default_locale.to_s
-        # end
       end
 
       if opts.has_key?(:_positional_keys) && opts[:_positional_keys].first == :locale
@@ -18,17 +11,6 @@ module RailsLocalization
       end
 
       opts
-    end
-
-    protected
-
-    def self.affect_script_name opts, locale
-      app_locales = ::I18n.locales[:main_app]
-      if opts[:script_name] =~ /^\/(#{::I18n.locales[:main_app].keys.join('|')})/
-        opts[:script_name].gsub!($1, locale)
-      else
-        opts[:script_name] = "/#{locale}#{opts[:script_name]}"
-      end
     end
   end
 end

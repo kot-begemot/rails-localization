@@ -42,4 +42,3 @@ class MapperIntegrationTest < Test::Unit::TestCase
   #   assert_equal({"en" => "English"}, @route_set.recognize_path("/", {:method => :get}))
   # end
 end
-  
