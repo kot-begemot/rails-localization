@@ -9,7 +9,7 @@ class RailsLocalizationTest < ActionDispatch::IntegrationTest
     I18n.available_locales = [:en, :ru]
   end
 
-  def teardown
+  teardown do
     ::I18n.locale = ::I18n.default_locale
     I18n.available_locales = []
   end
@@ -113,13 +113,13 @@ class RailsLocalizationTest < ActionDispatch::IntegrationTest
   #end
 
   #context "welcome page" do
-    def test_welcome_with_locale_1
+    test "page with locale 1 returns context" do
       visit "/en/welcome"
       assert_equal 200, page.status_code
       assert page.has_content? "translation missing: en.main.welcome"
     end
 
-    def test_welcome_with_locale_2
+    test "page with locale 2 returns context" do
       visit "/ru/welcome"
       assert_equal 200, page.status_code
       assert page.has_content? "translation missing: ru.main.welcome"
@@ -127,13 +127,13 @@ class RailsLocalizationTest < ActionDispatch::IntegrationTest
   #end
 
   #context "404" do
-    def test_wrong_page_without_locale
+    test "wrong page without locale" do
       assert_raise ActionController::RoutingError do
         visit "/test"
       end
     end
 
-    def test_wrong_page_with_locale
+    test "wrong page with locale" do
       assert_raise ActionController::RoutingError do
         visit "en/test"
       end

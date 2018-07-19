@@ -7,7 +7,7 @@ class UrlsOverwritingTest < ActionController::TestCase
     I18n.available_locales = [:en, :ru]
   end
 
-  def teardown
+  teardown do
     ::I18n.locale = ::I18n.default_locale
     I18n.available_locales = []
   end

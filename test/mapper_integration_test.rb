@@ -1,5 +1,6 @@
 # encoding: utf-8
 require File.expand_path("test_helper", File.dirname(__FILE__))
+require File.expand_path("support/capybara_helper", File.dirname(__FILE__))
 require "action_dispatch"
 require 'active_support/core_ext'
 require 'rails-localization/router'
@@ -15,7 +16,7 @@ class MapperIntegrationTest < Test::Unit::TestCase
   end
 
   teardown do
-    I18n.instance_variable_set(:@locales, @i18n_locales)
+    I18n.instance_variable_set(:@route_locales, @i18n_locales)
   end
 
   test "should Respond to localized" do
