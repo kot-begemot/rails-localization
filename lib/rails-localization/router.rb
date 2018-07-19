@@ -1,6 +1,7 @@
 module ActionDispatch::Routing::Mapper::Localization
   def localized(*locales)
     symbolized_locales = locales.map(&:to_sym)
+    I18n.config.available_locales = symbolized_locales
     if @set == Rails.application.routes
       I18n.route_locales[:main_app] = symbolized_locales
     else
