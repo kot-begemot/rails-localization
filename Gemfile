@@ -11,7 +11,7 @@ group :debug do
 end
 
 group :development, :test do
-  gem "jeweler", "~> 1.8.0"
+  gem "jeweler", "~> 2.3"
 end
 
 group :debug, :test do
