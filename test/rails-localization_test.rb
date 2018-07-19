@@ -5,6 +5,15 @@ require File.expand_path("support/capybara_helper", File.dirname(__FILE__))
 class RailsLocalizationTest < ActionDispatch::IntegrationTest
   include CapybaraHelper
 
+  setup do
+    I18n.available_locales = [:en, :ru]
+  end
+
+  def teardown
+    ::I18n.locale = ::I18n.default_locale
+    I18n.available_locales = []
+  end
+
   #context "sub app" do
     test "should access without locale" do
       visit "/sub"
@@ -81,7 +90,7 @@ class RailsLocalizationTest < ActionDispatch::IntegrationTest
       assert_equal 200, page.status_code
       assert page.has_content? "translation missing: en.main.index"
     end
-    
+
     test "root page should access with english locale" do
       visit "/en"
       assert_equal 200, page.status_code
@@ -116,7 +125,7 @@ class RailsLocalizationTest < ActionDispatch::IntegrationTest
       assert page.has_content? "translation missing: ru.main.welcome"
     end
   #end
-  
+
   #context "404" do
     def test_wrong_page_without_locale
       assert_raise ActionController::RoutingError do

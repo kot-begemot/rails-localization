@@ -3,8 +3,13 @@ require File.expand_path("test_helper", File.dirname(__FILE__))
 require File.expand_path("support/capybara_helper", File.dirname(__FILE__))
 
 class UrlsOverwritingTest < ActionController::TestCase
+  setup do
+    I18n.available_locales = [:en, :ru]
+  end
+
   def teardown
     ::I18n.locale = ::I18n.default_locale
+    I18n.available_locales = []
   end
 
   test "root" do

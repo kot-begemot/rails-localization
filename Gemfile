@@ -1,10 +1,11 @@
 source "http://rubygems.org"
 
-gem "rails", ">= 4.0.0"
+gem "rails", ">= 5.0.0"
 gem "i18n"
 
 group :debug do
-  gem "byebug", platform: :ruby_20
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  #gem "byebug", platform: :ruby_20
   #gem "debugger", "~> 1.2.2", platform: :ruby_19
   #gem "ruby-debug", platform: :ruby_18
 end
@@ -14,8 +15,7 @@ group :development, :test do
 end
 
 group :debug, :test do
-  gem "yard"  
-  gem "redcarpet"
+  gem "yard"
 end
 
 group :test do

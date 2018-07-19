@@ -2,7 +2,7 @@ module RailsLocalization
   module Controller
     def self.included(base)
       base.class_eval do
-        around_filter :process_with_locale
+        around_action :process_with_locale
 
         protected
 
@@ -12,10 +12,10 @@ module RailsLocalization
               ::I18n.locale = params[:locale].blank? ? ::I18n.default_locale : params[:locale].to_s
             end
             yield
-          ensure 
+          ensure
             ::I18n.locale = ::I18n.default_locale
-          end 
-        end    
+          end
+        end
       end
     end
   end

@@ -11,9 +11,9 @@ if defined?(ActiveSupport)
 
   ActiveSupport.on_load(:before_configuration) do
     require 'rails-localization/router'
-    require 'rails-localization/route_set'
+    require 'rails-localization/url_helper'
 
-    ActionDispatch::Routing::RouteSet.send :include, RailsLocalization::RouteSet
+    ActionDispatch::Routing::RouteSet::NamedRouteCollection::UrlHelper.send :prepend, RailsLocalization::UrlHelper
     ActionDispatch::Routing::Mapper.send :include, ActionDispatch::Routing::Mapper::Localization
 
     ActiveSupport.on_load(:action_controller) do

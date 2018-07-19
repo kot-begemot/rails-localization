@@ -1,9 +1,9 @@
 class MainController < ApplicationController
   def index
-    render :text => t('main.index')
+    render plain: t('main.index')
   end
 
   def welcome
-    render :text => t('main.welcome')
+    render plain: t('main.welcome')
   end
 end
