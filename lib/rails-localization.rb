@@ -5,7 +5,6 @@ require 'rails-localization/engine'
 
 if defined?(ActiveSupport)
   require 'rails-localization/i18n'
-  require 'rails-localization/url_options'
 
   I18n.extend RailsLocalization::I18n
 

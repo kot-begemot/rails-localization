@@ -8,6 +8,9 @@ rdoc
 doc
 .yardoc
 
+# byebug
+.byebug_history
+
 # bundler
 .bundle
 
